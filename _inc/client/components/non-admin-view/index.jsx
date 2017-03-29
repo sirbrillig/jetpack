@@ -16,7 +16,6 @@ import Navigation from 'components/navigation';
 import NavigationSettings from 'components/navigation-settings';
 import AtAGlance from 'at-a-glance/index.jsx';
 import SearchableSettings from 'settings/index.jsx';
-import Apps from 'apps/index.jsx';
 import { getSiteConnectionStatus } from 'state/connection';
 
 const NonAdminView = React.createClass( {
@@ -31,15 +30,7 @@ const NonAdminView = React.createClass( {
 		switch ( route ) {
 			case '/dashboard':
 			default:
-				if ( this.props.userCanViewStats || this.props.isModuleActivated( 'protect' ) ) {
-					pageComponent = <AtAGlance { ...this.props } />;
-				} else {
-					// If routing took us to Dashboard but user can't view anything, fallback to Apps
-					pageComponent = <Apps { ...this.props } />;
-				}
-				break;
-			case '/apps':
-				pageComponent = <Apps { ...this.props } />;
+				pageComponent = <AtAGlance { ...this.props } />;
 				break;
 			case '/settings':
 			case '/writing':
